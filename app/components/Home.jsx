@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View, TouchableOpacity,TextInput,ScrollView, Image,Dimensions } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity,TextInput,ScrollView, Image,Dimensions,Pressable } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Feather from 'react-native-vector-icons/Feather'
 import { useState, useRef } from 'react';
+
 
 import rings from '../../assets/images/rings.jpg';
 import earrings from '../../assets/images/earrings.webp';
@@ -16,6 +17,13 @@ import mudhurbanner1 from '../../assets/images/muhur_banner_1.jpg';
 import mudhurbanner2 from '../../assets/images/muhur_banner_1.jpg';
 import mudhurbanner3 from '../../assets/images/muhur_banner_1.jpg';
 import mudhurbanner4 from '../../assets/images/muhur_banner_1.jpg';
+
+import categorie1 from '../../assets/images/ring1.png';
+import categorie2 from '../../assets/images/ring2.png';
+import categorie3 from '../../assets/images/ring3.png';
+import categorie4 from '../../assets/images/ring1.png';
+import categorie5 from '../../assets/images/ring2.png';
+import categorie6 from '../../assets/images/ring3.png';
 
 const categories = [
     { name: 'Rings', image: rings },
@@ -36,9 +44,22 @@ const categories = [
   ];
 const screenWidth = Dimensions.get('window').width;
 
+const popularItems = [
+  { name: 'Gracefull overlap gold', image: categorie1, price: '₹12,000' },
+  { name: 'Gracefull overlap gold', image: categorie2, price: '₹35,000' },
+  { name: 'Gracefull overlap gold', image: categorie2, price: '₹35,000' },
+  { name: 'Gracefull overlap gold', image: categorie3, price: '₹18,500' },
+  { name: 'Gracefull overlap gold', image: categorie4, price: '₹22,000' },
+  { name: 'Gracefull overlap gold', image: categorie5, price: '₹28,000' },
+  { name: 'Gracefull overlap gold', image: categorie6, price: '₹40,000' },
+];
+
+
 export default function Home() {
     const [activeIndex, setActiveIndex] = useState(0);
     const scrollRef = useRef(null);
+    const [selectedCategory, setSelectedCategory] = useState('All');
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -151,12 +172,57 @@ export default function Home() {
   showsHorizontalScrollIndicator={false}
   style={{ marginTop: 10 }}
 >
-  {['All', 'Necklace', 'Rings', 'Earrings', 'Bangles', 'Jhumkas', 'Bracelets'].map((item, index) => (
-    <TouchableOpacity key={index} style={styles.categoryTag}>
-      <Text style={styles.categoryTagText}>{item}</Text>
-    </TouchableOpacity>
-    ))}
+  {['All', 'Necklace', 'Rings', 'Earrings', 'Bangles', 'Jhumkas', 'Bracelets'].map((item, index) => {
+    const isSelected = selectedCategory === item;
+    return (
+      <TouchableOpacity
+        key={index}
+        style={[
+          styles.categoryTag,
+          {
+            backgroundColor: isSelected ? '#9A7200' : 'transparent',
+          },
+        ]}
+        onPress={() => setSelectedCategory(item)}
+      >
+        <Text
+          style={[
+            styles.categoryTagText,
+            { color: isSelected ? '#fff' : '#9A7200' },
+          ]}
+        >
+          {item}
+        </Text>
+      </TouchableOpacity>
+    );
+  })}
 </ScrollView>
+
+
+<View style={{ marginTop: 30 }}>
+  {/* <Text style={styles.discoverHeading}>Popular Picks</Text>
+  <Text style={styles.discoverSubheading}>Our handpicked selection</Text> */}
+
+<View>
+
+  <ScrollView
+    horizontal
+    showsHorizontalScrollIndicator={false}
+    style={{ marginTop: 10 }}
+  >
+    {popularItems.map((item, index) => (
+      <TouchableOpacity key={index} style={styles.popularItemBox} >
+        <Image source={item.image} style={styles.popularItemImage} />
+        <Text style={styles.popularItemName}>{item.name}</Text>
+        <Text style={styles.popularItemPrice}>{item.price}</Text>
+      </TouchableOpacity>
+    ))}
+  </ScrollView>
+</View>
+
+</View>
+
+
 
   </ScrollView>
 
@@ -296,7 +362,8 @@ const styles = StyleSheet.create({
 
       bannerWrapper: {
         marginTop: 20,
-        height: 180,
+        height: 160,
+
       },
       
       bannerImage: {
@@ -311,7 +378,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginTop: 1,
-        bottom:30
+        bottom:20,
       },
       
       dot: {
@@ -351,38 +418,78 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: '#9A7200',
-        textAlign:"center"
+        textAlign:"center",
+        bottom:20,
+
       },
       
       discoverSubheading: {
         fontSize: 10,
         color: '#666',
-        marginTop: 2,
-        textAlign:"center"
+        marginTop: 12,
+        textAlign:"center",
+        bottom:20,
+      
       },
       
       categoryTag: {
         paddingHorizontal: 16,
         paddingVertical: 6,
-        borderRadius: 10,
+        borderRadius: 5,
         marginRight: 12,
         borderWidth: 1,
         borderColor: '#9A7200',
         width:80,
         height:30,
-        alignItems:"center"
-       
+        alignItems:"center",
         
       },
       
       categoryTagText: {
         color: '#9A7200',
-        fontSize: 10,
+        fontSize: 12,
         fontWeight: '500',
-        textAlign:"center"
+        textAlign:"center",   
+      },
+
+
+      popularItemBox: {
+        width: 120,
+        height: 150,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        marginRight: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        borderWidth: 0.2,
+        borderColor: '#9A7200',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+      },
+      popularItemImage: {
+        width: 80,
+        height: 80,
+        resizeMode: 'contain',
+        marginBottom: 8,
+      },
+      popularItemName: {
+        fontSize: 12,
+        color: '#333',
+        textAlign: 'left',
+        marginBottom: 4,
+      },
+      popularItemPrice: {
+        fontSize: 12,
+        fontWeight: 'bold',
+        color: '#9A7200',
+        right:27,
+        marginTop: 4,
       },
       
-    
+
   })
   
 
