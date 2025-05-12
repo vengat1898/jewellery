@@ -330,7 +330,7 @@ export default function Home() {
           <Feather name="home" size={20} color="#fff" />
           <Text style={styles.navText}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity style={styles.navItem} onPress={() => router.push({ pathname: '/components/Categoriesfooter'})}>
           <Feather name="grid" size={20} color="#fff" />
           <Text style={styles.navText}>Categories</Text>
         </TouchableOpacity>
