@@ -33,22 +33,19 @@ export default function Categoriesfooter() {
   ];
 
   return (
-    
-    <View >
-
-        <View style={styles.header}>
-                <View style={styles.headerTopRow}>
-                  <TouchableOpacity onPress={() => router.back()}>
-                    <Ionicons name="arrow-back" size={24} color="#9A7200" />
-                  </TouchableOpacity>
-                  <Text style={styles.heading}>checkout</Text>
-                </View>
+    <View>
+      <View style={styles.header}>
+        <View style={styles.headerTopRow}>
+          <TouchableOpacity onPress={() => router.back()}>
+            <Ionicons name="arrow-back" size={20} color="#9A7200" />
+          </TouchableOpacity>
+          <Text style={styles.heading}>checkout</Text>
         </View>
-
+      </View>
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {categories.map((category, index) => (
-          <TouchableOpacity key={index} style={styles.box}>
+          <TouchableOpacity  key={index} style={styles.box}  onPress={() => router.push({ pathname: '/components/Categories'})}>
             <Image source={category.image} style={styles.image} />
             <Text style={styles.title}>{category.title}</Text>
           </TouchableOpacity>
@@ -61,9 +58,9 @@ export default function Categoriesfooter() {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: 'white',
-    paddingHorizontal: 16,
-    paddingTop: 60,
-    paddingBottom: 20,
+    paddingHorizontal: 12,
+    paddingTop: 70,
+    paddingBottom: 10,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -77,45 +74,45 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   heading: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#9A7200',
-    marginLeft: 20,
+    marginLeft: 15,
     textTransform: 'uppercase',
   },
   scrollContainer: {
-    paddingTop: 120, // To make space for the header
+    paddingTop: 130, // reduced space for smaller header
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
   },
   box: {
-     width: '48%', // Two items per row
-  marginBottom: 16,
-  backgroundColor: '#fff',
-  borderRadius: 10,
-  padding: 10,
-  alignItems: 'center',
-  justifyContent: 'center',
+    width: '48%',
+    marginBottom: 12,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
 
-  // iOS shadow
-  shadowColor: '#000',
-  shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.84,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
   },
   image: {
     width: '100%',
-    height: 150,
-    borderRadius: 10,
+    height: 100, // reduced from 150
+    borderRadius: 8,
   },
   title: {
-    marginTop: 8,
-    fontSize: 16,
+    marginTop: 6,
+    fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#333',
   },
 });
+
 

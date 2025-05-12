@@ -232,7 +232,7 @@ export default function Home() {
          
          <View style={styles.sparkleImageRow}>
   {[sparkle1, sparkle2, sparkle3].map((img, index) => (
-    <TouchableOpacity key={index} style={styles.sparkleImageBox} activeOpacity={0.8}>
+    <TouchableOpacity key={index} style={styles.sparkleImageBox} activeOpacity={0.8}onPress={() => router.push({ pathname: '/components/Categories'})}>
       <Image source={img} style={styles.sparkleImageItem} />
     </TouchableOpacity>
   ))}
@@ -253,7 +253,7 @@ export default function Home() {
     Find the perfect Gift
   </Text> */}
 
-  <TouchableOpacity activeOpacity={0.8} style={styles.bannerTouchable}>
+  <TouchableOpacity activeOpacity={0.8} style={styles.bannerTouchable} onPress={() => router.push({ pathname: '/components/Categories'})}>
     <Image source={productbanner} style={styles.productBanner} />
     <View style={styles.bannerRow}>
   <Text style={styles.bannerLeftText}>Surprise for you</Text>
@@ -273,7 +273,7 @@ export default function Home() {
 
 <View style={styles.craftBox}>
   {[craftspecial1, craftspecial2, craftspecial3].map((img, index) => (
-    <TouchableOpacity key={index} style={styles.craftItem}>
+    <TouchableOpacity key={index} style={styles.craftItem}onPress={() => router.push({ pathname: '/components/Categories'})}>
       <Image source={img} style={styles.craftImage} />
       <Text style={styles.exploreText}>Explore</Text>
     </TouchableOpacity>
