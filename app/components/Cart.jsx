@@ -8,8 +8,12 @@ import categories1 from '../../assets/images/ring1.png';
 import categories2 from '../../assets/images/ring1.png';
 import categories3 from '../../assets/images/ring1.png';
 
+
+
 export default function Cart() {
   const router = useRouter();
+  const [paymentMethod, setPaymentMethod] = React.useState(null);
+
 
   return (
     <View style={styles.container}>
@@ -90,12 +94,53 @@ export default function Cart() {
 </View>
 
 
+<View style={styles.paymentMethodContainer}>
+  <Text style={styles.paymentHeading}>Choose Payment Method</Text>
+
+  <TouchableOpacity
+    style={[
+      styles.paymentBoxFull,
+      paymentMethod === 'cod' && styles.selectedPaymentBox,
+    ]}
+    onPress={() => setPaymentMethod('cod')}
+  >
+    <Text
+      style={[
+        styles.paymentText,
+        paymentMethod === 'cod' && styles.selectedPaymentText,
+      ]}
+    >
+      Cash on Delivery
+    </Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity
+    style={[
+      styles.paymentBoxFull,
+      paymentMethod === 'online' && styles.selectedPaymentBox,
+    ]}
+    onPress={() => setPaymentMethod('online')}
+  >
+    <Text
+      style={[
+        styles.paymentText,
+        paymentMethod === 'online' && styles.selectedPaymentText,
+      ]}
+    >
+      Pay Online
+    </Text>
+  </TouchableOpacity>
+</View>
+
+
+
+
 
       </ScrollView>
 
       <View style={styles.bottomBar}>
   <Text style={styles.bottomPrice}>₹169000</Text>
-  <TouchableOpacity style={styles.checkoutButton}>
+  <TouchableOpacity style={styles.checkoutButton} onPress={() => router.push({ pathname: '/components/Checkout' })}>
     <Text style={styles.checkoutButtonText}>Proceed to Checkout</Text>
   </TouchableOpacity>
 </View>
@@ -128,7 +173,8 @@ const styles = StyleSheet.create({
     right: 280,
   },
   scrollContainer: {
-    padding: 16,
+    padding: 14,
+    paddingBottom: 120,
   },
   addAddressBox: {
     backgroundColor: 'white',
@@ -321,7 +367,7 @@ bottomPrice: {
 checkoutButton: {
   backgroundColor: '#9A7200',
   paddingVertical: 10,
-  paddingHorizontal: 20,
+  paddingHorizontal: 10,
   borderRadius: 8,
   bottom:10
 },
@@ -331,8 +377,38 @@ checkoutButtonText: {
   fontSize: 14,
   fontWeight: 'bold',
 },
-
-
+paymentMethodContainer: {
+  marginBottom: 20,
+},
+paymentHeading: {
+  fontSize: 13,
+  fontWeight: 'bold',
+  color: '#333',
+  marginBottom: 10,
+},
+paymentBoxFull: {
+  width: '100%',
+  paddingVertical: 16,
+  paddingHorizontal: 20,
+  backgroundColor: 'white',
+  borderRadius: 5,
+  marginBottom: 12,
+  alignItems: 'center',
+  borderWidth: 1,
+  borderColor: '#ccc',
+},
+selectedPaymentBox: {
+  backgroundColor: '#9A7200',
+  borderColor: '#9A7200',
+},
+paymentText: {
+  fontSize: 14,
+  color: '#333',
+  fontWeight: '600',
+},
+selectedPaymentText: {
+  color: '#fff',
+},
 
 
 

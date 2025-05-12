@@ -32,6 +32,21 @@ import categorie3 from '../../assets/images/ring3.png';
 import categorie4 from '../../assets/images/ring1.png';
 import categorie5 from '../../assets/images/ring2.png';
 import categorie6 from '../../assets/images/ring3.png';
+import productbanner from '../../assets/images/product-banner.jpg';
+import sparklebanner from '../../assets/images/sparklebanner.jpg';
+import sparkle1 from '../../assets/images/sparkle1.jpg';
+import sparkle2 from '../../assets/images/sparkle2.jpg';
+import sparkle3 from '../../assets/images/sparkle3.jpg';
+
+import craftspecial1 from '../../assets/images/craftspecial1.jpg';
+import craftspecial2 from '../../assets/images/craftspecial2.webp';
+import craftspecial3 from '../../assets/images/craftspecial3.webp';
+
+import children from '../../assets/images/children.jpg';
+import women from '../../assets/images/women.webp';
+import man from '../../assets/images/man.jpg';
+
+
 
 const categories = [
   { name: 'Rings', image: rings },
@@ -181,7 +196,8 @@ export default function Home() {
               <TouchableOpacity
                 key={index}
                 style={[styles.categoryTag, { backgroundColor: isSelected ? '#9A7200' : 'transparent' }]}
-                onPress={() => setSelectedCategory(item)}
+                // onPress={() => setSelectedCategory(item)}
+                 onPress={() => router.push({ pathname: '/components/Categories', params: { category: item.name } })}
               >
                 <Text style={[styles.categoryTagText, { color: isSelected ? '#fff' : '#9A7200' }]}>
                   {item}
@@ -195,7 +211,8 @@ export default function Home() {
         <View style={{ marginTop: 30 }}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10 }}>
             {popularItems.map((item, index) => (
-              <TouchableOpacity key={index} style={styles.popularItemBox}>
+              <TouchableOpacity key={index} style={styles.popularItemBox}
+               onPress={() => router.push({ pathname: '/components/Categories'})}>
                 <Image source={item.image} style={styles.popularItemImage} />
                 <Text style={styles.popularItemName}>{item.name}</Text>
                 <Text style={styles.popularItemPrice}>{item.price}</Text>
@@ -203,6 +220,108 @@ export default function Home() {
             ))}
           </ScrollView>
         </View>
+
+
+        <View style={styles.sparkleSection}>
+           <Text style={styles.sparkleHeading}>Sparkle Every Day</Text>
+           <Text style={styles.sparkleSubheading}>
+           Discover timeless pieces that elevate your style
+           </Text>
+           <Image source={sparklebanner} style={styles.sparkleImage} />
+         </View>
+         
+         <View style={styles.sparkleImageRow}>
+  {[sparkle1, sparkle2, sparkle3].map((img, index) => (
+    <TouchableOpacity key={index} style={styles.sparkleImageBox} activeOpacity={0.8}>
+      <Image source={img} style={styles.sparkleImageItem} />
+    </TouchableOpacity>
+  ))}
+</View>
+
+
+
+
+        {/* Sparkle Every Day Section */}
+
+        <Text style={styles.sparkleHeading1}>Gifting</Text>
+  <Text style={styles.sparkleSubheading1}>
+    Find the perfect Gift
+  </Text>
+<View style={styles.sparkleBox1}>
+  {/* <Text style={styles.sparkleHeading1}>Gifting</Text>
+  <Text style={styles.sparkleSubheading1}>
+    Find the perfect Gift
+  </Text> */}
+
+  <TouchableOpacity activeOpacity={0.8} style={styles.bannerTouchable}>
+    <Image source={productbanner} style={styles.productBanner} />
+    <View style={styles.bannerRow}>
+  <Text style={styles.bannerLeftText}>Surprise for you</Text>
+  <TouchableOpacity style={styles.bannerExploreBtn}>
+    <Text style={styles.bannerExploreText}>Explore</Text>
+    <Feather name="chevron-right" size={16} color="#9A7200" />
+  </TouchableOpacity>
+</View>
+
+  </TouchableOpacity>
+</View>
+
+
+<View style={styles.craftSection}>
+  <Text style={styles.craftHeading}>Sri Chandra Jewell Craft</Text>
+  <Text style={styles.craftSubheading}>Our top picks just for you</Text>
+
+<View style={styles.craftBox}>
+  {[craftspecial1, craftspecial2, craftspecial3].map((img, index) => (
+    <TouchableOpacity key={index} style={styles.craftItem}>
+      <Image source={img} style={styles.craftImage} />
+      <Text style={styles.exploreText}>Explore</Text>
+    </TouchableOpacity>
+  ))}
+</View>
+
+</View>
+
+
+
+<View style={{ marginTop: 30 }}>
+  <Text style={styles.sectionHeading}>Shop by Gender</Text>
+  <Text style={styles.sectionSubheading}>
+    First class jewellery for first-class men, women & children
+  </Text>
+
+  <View style={styles.genderBox}>
+    {[{ label: 'Man', image: man }, { label: 'Children', image: children }].map((item, index) => (
+      <TouchableOpacity key={index} style={styles.genderItem}>
+        <Image source={item.image} style={styles.genderImage} />
+        <View style={styles.genderTextRow}>
+          <Text style={styles.genderLabel}>{item.label}</Text>
+          <TouchableOpacity style={styles.exploreBtn}>
+            <Text style={styles.exploreText}>Explore</Text>
+            <Feather name="chevron-right" size={16} color="#9A7200" />
+          </TouchableOpacity>
+        </View>
+      </TouchableOpacity>
+    ))}
+  </View>
+
+<TouchableOpacity style={styles.rectangleBox} onPress={() => console.log('Explore Women')}>
+  <Image source={women} style={styles.rectangleImage} />
+  <View style={styles.rectangleTextRow}>
+    <Text style={styles.rectangleLabel}>Women</Text>
+    <View style={styles.rectangleExploreBtn}>
+      <Text style={styles.rectangleExploreText}>Explore</Text>
+      <Feather name="chevron-right" size={16} color="#9A7200" />
+    </View>
+  </View>
+</TouchableOpacity>
+
+
+</View>
+
+
+
+
       </ScrollView>
 
       {/* Footer */}
@@ -233,7 +352,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
   },
   header: {
     flexDirection: 'row',
@@ -443,6 +562,319 @@ const styles = StyleSheet.create({
     right: 21,
     marginTop: 4,
   },
+
+
+  sparkleSection: {
+  marginTop: 20,
+  alignItems: 'center',
+  paddingHorizontal: 10,
+},
+sparkleHeading: {
+  fontSize: 13,
+  fontWeight: 'bold',
+  color: '#9A7200',
+  marginBottom: 10,
+},
+sparkleSubheading: {
+  fontSize: 12,
+  color: '#666',
+  marginBottom: 13,
+  textAlign: 'center',
+},
+sparkleImage: {
+  width: '100%',
+  height: 120,
+  borderRadius: 5,
+  resizeMode: 'cover',
+},
+
+
+sparkleImageRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginTop: 16,
+  paddingHorizontal: 4,
+},
+sparkleImageBox: {
+  width: 110,
+  height: 110,
+  marginHorizontal: 4,
+  borderRadius: 2,
+  overflow: 'hidden',
+},
+sparkleImageItem: {
+  width: '100%',
+  height: '100%',
+  borderRadius: 5,
+  resizeMode: 'cover',
+},
+
+
+
+
+
+  sparkleBox1: {
+  marginTop: 20,
+  padding: 0,
+  backgroundColor: '#fff',
+  borderRadius: 5,
+  borderColor: '#9A7200',
+  borderWidth: 0.3,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.1,
+  shadowRadius: 3,
+  height:135
+},
+sparkleHeading1: {
+  fontSize: 15,
+  fontWeight: 'bold',
+  color: '#9A7200',
+  marginBottom: 8,
+  textAlign:"center",
+  top:20
+},
+sparkleSubheading1: {
+  fontSize: 12,
+  color: '#666',
+  marginBottom: 10,
+  textAlign:"center",
+  top:20
+},
+bannerTouchable: {
+  // position: 'relative',
+ 
+  overflow: 'hidden',
+},
+productBanner: {
+  width: '100%',
+  height: 100,
+  resizeMode: 'cover',
+},
+bannerOverlay: {
+  position: 'absolute',
+  bottom: 10,
+  left: 10,
+},
+bannerText: {
+  fontSize: 12,
+  fontWeight: 'bold',
+  color: '#fff',
+  textShadowColor: 'rgba(0, 0, 0, 0.7)',
+  textShadowOffset: { width: 1, height: 1 },
+  textShadowRadius: 2,
+},
+exploreRow: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  marginTop: 4,
+},
+exploreText: {
+  fontSize: 8,
+  fontWeight: 'bold',
+  color: '#9A7200',
+  marginRight: 4,
+  backgroundColor: '#fff',
+  paddingHorizontal: 8,
+  paddingVertical: 4,
+  borderRadius: 5,
+},
+bannerRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginTop: 8,
+  paddingHorizontal: 6,
+},
+bannerLeftText: {
+  fontSize: 10,
+  fontWeight: 'bold',
+  color: '#9A7200',
+},
+bannerExploreBtn: {
+  flexDirection: 'row',
+  alignItems: 'center',
+},
+bannerExploreText: {
+  fontSize: 10,
+  fontWeight: 'bold',
+  color: '#9A7200',
+  marginRight: 4,
+},
+
+craftSection: {
+  marginTop: 30,
+  paddingHorizontal: 10,
+},
+
+craftHeading: {
+  fontSize: 14,
+  fontWeight: 'bold',
+  color: '#9A7200',
+  textAlign: 'center',
+  marginBottom: 4,
+},
+
+craftSubheading: {
+  fontSize: 10,
+  color: '#666',
+  textAlign: 'center',
+  marginBottom: 12,
+},
+
+craftBox: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  backgroundColor: '#f9f5ef',
+  borderRadius: 10,
+  padding: 10,
+  elevation: 2,
+  marginTop: 10,
+},
+
+craftItem: {
+  width: 90,
+  height: 110,
+  backgroundColor: '#fff',
+  borderRadius: 8,
+  alignItems: 'center',
+  justifyContent: 'center',
+  paddingVertical: 8,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 1 },
+  shadowOpacity: 0.1,
+  shadowRadius: 2,
+  elevation: 2,
+},
+
+craftImage: {
+  width: 90,
+  height: 90,
+  borderRadius: 6,
+  resizeMode: 'cover',
+  marginBottom: 6,
+},
+
+exploreText: {
+  fontSize: 10,
+  color: '#9A7200',
+  fontWeight: '600',
+  bottom:2
+},
+
+
+
+sectionHeading: {
+  fontSize: 14,
+  fontWeight: 'bold',
+  color: '#9A7200',
+  marginBottom: 6,
+  textAlign: 'center',
+},
+
+sectionSubheading: {
+  fontSize: 10,
+  color: '#555',
+  textAlign: 'center',
+  marginBottom: 16,
+},
+
+genderBox: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+},
+
+genderItem: {
+  width: '48%',
+  backgroundColor: '#fff',
+  borderRadius: 5,
+  overflow: 'hidden',
+  borderColor: '#9A7200',
+  borderWidth: 0.3,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.1,
+  shadowRadius: 2,
+  elevation: 2,
+},
+
+genderImage: {
+  width: '100%',
+  height: 150,
+  resizeMode: 'cover',
+},
+
+genderTextRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  paddingHorizontal: 10,
+  paddingVertical: 8,
+},
+
+genderLabel: {
+  fontSize: 10,
+  fontWeight: '600',
+  color: '#333',
+},
+
+exploreBtn: {
+  flexDirection: 'row',
+  alignItems: 'center',
+},
+
+exploreText: {
+  fontSize: 10,
+  color: '#9A7200',
+  marginRight: 2,
+},
+
+rectangleBox: {
+  width: '100%',
+  borderRadius: 5,
+  overflow: 'hidden',
+  backgroundColor: '#fff',
+  borderColor: '#9A7200',
+  borderWidth: 0.3,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.1,
+  shadowRadius: 2,
+  elevation: 2,
+  marginVertical: 16,
+},
+
+rectangleImage: {
+  width: '100%',
+  height: 150,
+  resizeMode: 'cover',
+},
+
+rectangleTextRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: 10,
+},
+
+rectangleLabel: {
+  fontSize: 12,
+  fontWeight: '600',
+  color: '#333',
+},
+
+rectangleExploreBtn: {
+  flexDirection: 'row',
+  alignItems: 'center',
+},
+
+rectangleExploreText: {
+  fontSize: 10,
+  color: '#9A7200',
+  marginRight: 2,
+},
+
+
 });
 
   
