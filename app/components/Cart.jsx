@@ -22,10 +22,10 @@ export default function Cart() {
           <Text style={styles.heading}>Cart</Text>
         </View>
       </View>
-
+{/*  */}
       {/* Scrollable Content */}
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <TouchableOpacity style={styles.addAddressBox}>
+        <TouchableOpacity style={styles.addAddressBox} onPress={() => router.push({ pathname: '/components/AddressNew' })}>
           <View style={styles.addIconContainer}>
             <Feather name="plus" size={20} color="#9A7200" />
           </View>

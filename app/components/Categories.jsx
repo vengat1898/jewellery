@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput,Image,ScrollView } from 'react-native';
-import React from 'react';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
+import { Modal } from 'react-native';
+import React, { useState } from 'react';
 
 import sortIcon from '../../assets/images/sort.png';
 import filterIcon from '../../assets/images/filter.png';
@@ -35,6 +36,8 @@ const popularItems = [
 export default function Categories() {
   const router = useRouter();
   const { category } = useLocalSearchParams(); // Receive category name
+  const [sortModalVisible, setSortModalVisible] = useState(false);
+
 
   return (
     <View style={styles.container}>
@@ -77,15 +80,16 @@ export default function Categories() {
 
 {/* Row 3: Filter and Sort By */}
 <View style={styles.filterSortContainer}>
-  <TouchableOpacity style={styles.filterSortBox}>
+  <TouchableOpacity style={styles.filterSortBox}onPress={() => router.push({ pathname: '/components/CetegorieFilter'})}>
     <Image source={filterIcon} style={styles.filterSortImage} resizeMode="contain" />
     <Text style={styles.filterSortText}>Filter</Text>
   </TouchableOpacity>
 
-  <TouchableOpacity style={styles.filterSortBox}>
-    <Image source={sortIcon} style={styles.filterSortImage} resizeMode="contain" />
-    <Text style={styles.filterSortText}>Sort By</Text>
-  </TouchableOpacity>
+  <TouchableOpacity style={styles.filterSortBox} onPress={() => setSortModalVisible(true)}>
+  <Image source={sortIcon} style={styles.filterSortImage} resizeMode="contain" />
+  <Text style={styles.filterSortText}>Sort By</Text>
+</TouchableOpacity>
+
 </View>
 
 {/* Popular Items Scroll */}
@@ -129,6 +133,44 @@ export default function Categories() {
           <Text style={styles.navText}>Profile</Text>
         </TouchableOpacity>
       </View>
+
+      <Modal
+  animationType="slide"
+  transparent={true}
+  visible={sortModalVisible}
+  onRequestClose={() => setSortModalVisible(false)}
+>
+  <View style={styles.modalOverlay}>
+    <View style={styles.modalContainer}>
+      <Text style={styles.modalHeading}>Sort By</Text>
+      <TouchableOpacity style={styles.modalOption} onPress={() => {/* handle latest */}}>
+        <Text style={styles.modalOptionText}>Latest</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.modalOption} onPress={() => {/* handle discount */}}>
+        <Text style={styles.modalOptionText}>Discount</Text>
+      </TouchableOpacity>
+
+      <Text style={[styles.modalHeading, { marginTop: 20 }]}>Features</Text>
+      <TouchableOpacity style={styles.modalOption} onPress={() => {/* handle price low-high */}}>
+        <Text style={styles.modalOptionText}>Price: Low to High</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.modalOption} onPress={() => {/* handle price high-low */}}>
+        <Text style={styles.modalOptionText}>Price: High to Low</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.modalOption} onPress={() => {/* handle rating */}}>
+        <Text style={styles.modalOptionText}>Customer Rating</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => setSortModalVisible(false)} style={styles.closeModalButton}>
+        <Text style={styles.closeModalText}>Close</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</Modal>
+
+
+
+
 
 
 
@@ -314,10 +356,45 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginTop: 4,
   },
-  
-  
-  
-  
+
+  modalOverlay: {
+  flex: 1,
+  backgroundColor: 'rgba(0,0,0,0.5)',
+  justifyContent: 'flex-end',
+},
+modalContainer: {
+  backgroundColor: 'white',
+  padding: 20,
+  borderTopLeftRadius: 16,
+  borderTopRightRadius: 16,
+},
+modalHeading: {
+  fontSize: 16,
+  fontWeight: 'bold',
+  color: '#9A7200',
+  marginBottom: 10,
+},
+modalOption: {
+  paddingVertical: 10,
+},
+modalOptionText: {
+  fontSize: 14,
+  color: '#333',
+},
+closeModalButton: {
+  marginTop: 30,
+  paddingVertical: 13,
+  paddingHorizontal:60,
+  alignItems: 'center',
+  backgroundColor: '#9A7200',
+  borderRadius: 8,
+ 
+},
+closeModalText: {
+  color: 'white',
+  fontWeight: 'bold',
+},
+
 });
 
 
