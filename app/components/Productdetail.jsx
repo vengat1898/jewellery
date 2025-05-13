@@ -4,16 +4,16 @@ import { useRouter, useLocalSearchParams } from 'expo-router';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 
-import categories1 from '../../assets/images/ring1.png';
-import categories2 from '../../assets/images/ring1.png';
-import categories3 from '../../assets/images/ring1.png';
+import categories1 from '../../assets/images/ring2.png';
+import categories2 from '../../assets/images/ring2.png';
+import categories3 from '../../assets/images/ring2.png';
 
-import categorie1 from '../../assets/images/ring1.png';
+import categorie1 from '../../assets/images/ring2.png';
 import categorie2 from '../../assets/images/ring2.png';
-import categorie3 from '../../assets/images/ring3.png';
-import categorie4 from '../../assets/images/ring1.png';
+import categorie3 from '../../assets/images/ring2.png';
+import categorie4 from '../../assets/images/ring2.png';
 import categorie5 from '../../assets/images/ring2.png';
-import categorie6 from '../../assets/images/ring3.png';
+import categorie6 from '../../assets/images/ring2.png';
 
 
 const popularItems = [

@@ -8,12 +8,12 @@ import React, { useState } from 'react';
 import sortIcon from '../../assets/images/sort.png';
 import filterIcon from '../../assets/images/filter.png';
 
-import categorie1 from '../../assets/images/ring1.png';
+import categorie1 from '../../assets/images/ring2.png';
 import categorie2 from '../../assets/images/ring2.png';
-import categorie3 from '../../assets/images/ring3.png';
-import categorie4 from '../../assets/images/ring1.png';
+import categorie3 from '../../assets/images/ring2.png';
+import categorie4 from '../../assets/images/ring2.png';
 import categorie5 from '../../assets/images/ring2.png';
-import categorie6 from '../../assets/images/ring3.png';
+import categorie6 from '../../assets/images/ring2.png';
 
 
 const popularItems = [

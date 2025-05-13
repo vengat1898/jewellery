@@ -4,7 +4,7 @@ import { useRouter, useLocalSearchParams } from 'expo-router';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 
-import categories1 from '../../assets/images/ring1.png';
+import categories1 from '../../assets/images/ring2.png';
 
 
 
