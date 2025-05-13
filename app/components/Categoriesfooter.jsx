@@ -39,7 +39,7 @@ export default function Categoriesfooter() {
           <TouchableOpacity onPress={() => router.back()}>
             <Ionicons name="arrow-back" size={20} color="#9A7200" />
           </TouchableOpacity>
-          <Text style={styles.heading}>checkout</Text>
+          <Text style={styles.heading}>categories</Text>
         </View>
       </View>
 
@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#9A7200',
     marginLeft: 15,
-    textTransform: 'uppercase',
   },
   scrollContainer: {
     paddingTop: 130, // reduced space for smaller header

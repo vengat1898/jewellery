@@ -5,8 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 
 import categories1 from '../../assets/images/ring1.png';
-import categories2 from '../../assets/images/ring1.png';
-import categories3 from '../../assets/images/ring1.png';
+
 
 
 
